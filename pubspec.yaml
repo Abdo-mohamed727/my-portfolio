@@ -22,4 +22,5 @@ flutter:
   assets:
     - assets/projects/blinkbuy/
     - assets/projects/tasky/
-    - assets/projects/my_store/
+    - assets/projects/my_store/admin/
+    - assets/projects/my_store/coustmer/
