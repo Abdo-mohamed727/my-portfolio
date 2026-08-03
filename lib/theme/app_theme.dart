@@ -73,4 +73,7 @@ class Responsive {
     if (isTablet(context)) return 48;
     return 100;
   }
+
+  static double sectionVerticalPadding(BuildContext context) =>
+      isMobile(context) ? 56 : 80;
 }

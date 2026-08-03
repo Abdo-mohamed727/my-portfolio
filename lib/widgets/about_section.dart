@@ -13,10 +13,13 @@ class AboutSection extends StatelessWidget {
       width: double.infinity,
       padding: EdgeInsets.symmetric(
         horizontal: Responsive.horizontalPadding(context),
-        vertical: 80,
+        vertical: Responsive.sectionVerticalPadding(context),
       ),
       color: AppColors.surface,
-      child: Column(
+      child: Center(
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 1200),
+          child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const _SectionLabel(label: 'ABOUT ME'),
@@ -49,7 +52,9 @@ class AboutSection extends StatelessWidget {
               ),
             ],
           ),
-        ],
+            ],
+          ),
+        ),
       ),
     );
   }

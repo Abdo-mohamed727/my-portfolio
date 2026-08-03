@@ -44,9 +44,12 @@ class _ProjectPresentationScreenState extends State<ProjectPresentationScreen> {
               horizontal: Responsive.horizontalPadding(context),
               vertical: 24,
             ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
+            child: Center(
+              child: ConstrainedBox(
+                constraints: const BoxConstraints(maxWidth: 1200),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
                 // Back button
                 InkWell(
                   onTap: () => Navigator.of(context).pop(),
@@ -181,8 +184,10 @@ class _ProjectPresentationScreenState extends State<ProjectPresentationScreen> {
                       ),
                   ],
                 ),
-                const SizedBox(height: 40),
-              ],
+                    const SizedBox(height: 40),
+                  ],
+                ),
+              ),
             ),
           ),
         ),

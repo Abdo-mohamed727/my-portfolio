@@ -56,8 +56,9 @@ class PortfolioData {
       ],
       highlights: [
         'Optimistic UI updates for instant favourite toggling with smooth animations',
-        'Fixed FCM foreground/background notification delivery end-to-end',
-        'Refactored state logic using BlocSelector for granular rebuilds',
+        'Implemented a reactive BLoC-driven UI with state management and error handling',
+        "Designed a Clean Architecture structure with separate layers for presentation, domain, and data",
+        'Work with Team to implement features and fix bugs in a collaborative environment',
       ],
       githubUrl: '', // TODO: add your repo link
       screenshots: [
@@ -99,8 +100,8 @@ class PortfolioData {
           'Clean Architecture domain layers and a multi-file theming system.',
       techStack: ['Flutter', 'Clean Architecture', 'ThemeExtension'],
       highlights: [
-        'Built a Favourites feature with spec-driven development',
-        'Designed a multi-file theme architecture with light/dark support',
+        'The App has two  rules: Admin and Customer, each with its own set of features and functionalities.',
+        'I use clean architecture to separate the app into different layers, making it easier to maintain and test.',
       ],
       githubUrl: '',
       screenshots: [

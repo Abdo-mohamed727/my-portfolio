@@ -29,7 +29,7 @@ class ProjectCard extends StatelessWidget {
       onTap: () => _openPresentation(context),
       borderRadius: BorderRadius.circular(14),
       child: Container(
-      padding: const EdgeInsets.all(28),
+      padding: EdgeInsets.all(Responsive.isMobile(context) ? 20 : 28),
       decoration: BoxDecoration(
         color: AppColors.surfaceLight,
         borderRadius: BorderRadius.circular(14),

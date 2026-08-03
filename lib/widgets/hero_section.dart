@@ -20,9 +20,12 @@ class HeroSection extends StatelessWidget {
       width: double.infinity,
       padding: EdgeInsets.symmetric(
         horizontal: Responsive.horizontalPadding(context),
-        vertical: isMobile ? 60 : 120,
+        vertical: isMobile ? 64 : 120,
       ),
-      child: Column(
+      child: Center(
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 1200),
+          child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
@@ -99,7 +102,9 @@ class HeroSection extends StatelessWidget {
               ),
             ],
           ),
-        ],
+            ],
+          ),
+        ),
       ),
     );
   }

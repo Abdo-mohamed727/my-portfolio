@@ -29,9 +29,28 @@ class NavBar extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(
-            PortfolioData.name,
-            style: Theme.of(context).textTheme.titleLarge,
+          Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              ClipOval(
+                child: Image.asset(
+                  'assets/images/my_photo.jpeg',
+                  width: isMobile ? 36 : 42,
+                  height: isMobile ? 36 : 42,
+                  fit: BoxFit.cover,
+                  errorBuilder: (context, error, stackTrace) => CircleAvatar(
+                    radius: isMobile ? 18 : 21,
+                    backgroundColor: AppColors.primary,
+                    child: const Icon(Icons.person, color: Colors.white),
+                  ),
+                ),
+              ),
+              const SizedBox(width: 12),
+              Text(
+                PortfolioData.name,
+                style: Theme.of(context).textTheme.titleLarge,
+              ),
+            ],
           ),
           if (!isMobile)
             Row(
@@ -44,9 +63,24 @@ class NavBar extends StatelessWidget {
               ],
             )
           else
-            IconButton(
+            PopupMenuButton<VoidCallback>(
               icon: const Icon(Icons.menu, color: AppColors.textPrimary),
-              onPressed: onContactTap,
+              color: AppColors.surfaceLight,
+              onSelected: (action) => action(),
+              itemBuilder: (context) => [
+                PopupMenuItem(
+                  value: onAboutTap,
+                  child: const Text('About'),
+                ),
+                PopupMenuItem(
+                  value: onProjectsTap,
+                  child: const Text('Projects'),
+                ),
+                PopupMenuItem(
+                  value: onContactTap,
+                  child: const Text('Contact'),
+                ),
+              ],
             ),
         ],
       ),

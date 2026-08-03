@@ -8,21 +8,18 @@ class ProjectsSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final crossAxisCount = Responsive.isDesktop(context)
-        ? 2
-        : Responsive.isTablet(context)
-            ? 2
-            : 1;
-
     return Container(
       width: double.infinity,
       padding: EdgeInsets.symmetric(
         horizontal: Responsive.horizontalPadding(context),
-        vertical: 80,
+        vertical: Responsive.sectionVerticalPadding(context),
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
+      child: Center(
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 1200),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
           Row(
             children: [
               Container(width: 32, height: 2, color: AppColors.primary),
@@ -42,20 +39,27 @@ class ProjectsSection extends StatelessWidget {
           Text('Things I\'ve built',
               style: Theme.of(context).textTheme.headlineMedium),
           const SizedBox(height: 32),
-          GridView.builder(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            itemCount: PortfolioData.projects.length,
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: crossAxisCount,
-              crossAxisSpacing: 24,
-              mainAxisSpacing: 24,
-              mainAxisExtent: 380,
-            ),
-            itemBuilder: (context, index) =>
-                ProjectCard(project: PortfolioData.projects[index]),
+              LayoutBuilder(
+                builder: (context, constraints) {
+                  final columns = constraints.maxWidth >= 760 ? 2 : 1;
+                  return GridView.builder(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: PortfolioData.projects.length,
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: columns,
+                      crossAxisSpacing: 24,
+                      mainAxisSpacing: 24,
+                      mainAxisExtent: columns == 1 ? 440 : 420,
+                    ),
+                    itemBuilder: (context, index) =>
+                        ProjectCard(project: PortfolioData.projects[index]),
+                  );
+                },
+              ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }

@@ -21,9 +21,12 @@ class ContactSection extends StatelessWidget {
       color: AppColors.surface,
       padding: EdgeInsets.symmetric(
         horizontal: Responsive.horizontalPadding(context),
-        vertical: 100,
+        vertical: Responsive.sectionVerticalPadding(context),
       ),
-      child: Column(
+      child: Center(
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 1200),
+          child: Column(
         children: [
           Text(
             'Let\'s work together',
@@ -33,8 +36,8 @@ class ContactSection extends StatelessWidget {
                 ),
           ),
           const SizedBox(height: 14),
-          SizedBox(
-            width: 480,
+          ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 480),
             child: Text(
               'I\'m open to junior Flutter developer roles and freelance projects. '
               'Feel free to reach out — happy to talk about Flutter, Clean Architecture, '
@@ -100,7 +103,9 @@ class ContactSection extends StatelessWidget {
             '© ${DateTime.now().year} ${PortfolioData.name}. Built with Flutter.',
             style: const TextStyle(color: AppColors.textSecondary, fontSize: 13),
           ),
-        ],
+            ],
+          ),
+        ),
       ),
     );
   }
