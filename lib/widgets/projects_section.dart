@@ -42,18 +42,20 @@ class ProjectsSection extends StatelessWidget {
               LayoutBuilder(
                 builder: (context, constraints) {
                   final columns = constraints.maxWidth >= 760 ? 2 : 1;
-                  return GridView.builder(
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemCount: PortfolioData.projects.length,
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: columns,
-                      crossAxisSpacing: 24,
-                      mainAxisSpacing: 24,
-                      mainAxisExtent: columns == 1 ? 440 : 420,
-                    ),
-                    itemBuilder: (context, index) =>
-                        ProjectCard(project: PortfolioData.projects[index]),
+                  final cardWidth =
+                      columns == 1 ? constraints.maxWidth : (constraints.maxWidth - 24) / 2;
+
+                  return Wrap(
+                    spacing: 24,
+                    runSpacing: 24,
+                    children: PortfolioData.projects
+                        .map(
+                          (project) => SizedBox(
+                            width: cardWidth,
+                            child: ProjectCard(project: project),
+                          ),
+                        )
+                        .toList(),
                   );
                 },
               ),

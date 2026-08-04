@@ -35,10 +35,9 @@ class ProjectCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(14),
           border: Border.all(color: AppColors.border),
         ),
-        child: Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
               Text(project.title,
                   style: Theme.of(context).textTheme.titleLarge),
               const SizedBox(height: 12),
@@ -68,32 +67,43 @@ class ProjectCard extends StatelessWidget {
                 ),
               ],
               const SizedBox(height: 16),
-              Wrap(
-                spacing: 8,
-                runSpacing: 8,
-                children: project.techStack
-                    .map((t) => Container(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 10, vertical: 6),
-                          decoration: BoxDecoration(
-                            color: AppColors.background,
-                            borderRadius: BorderRadius.circular(6),
-                          ),
-                          child: Text(
-                            t,
-                            style: const TextStyle(
-                              color: AppColors.primaryLight,
-                              fontSize: 12,
-                              fontWeight: FontWeight.w600,
+              LayoutBuilder(
+                builder: (context, constraints) => Wrap(
+                  spacing: 8,
+                  runSpacing: 8,
+                  children: project.techStack
+                      .map(
+                        (t) => ConstrainedBox(
+                          constraints:
+                              BoxConstraints(maxWidth: constraints.maxWidth),
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 10, vertical: 6),
+                            decoration: BoxDecoration(
+                              color: AppColors.background,
+                              borderRadius: BorderRadius.circular(6),
+                            ),
+                            child: Text(
+                              t,
+                              softWrap: true,
+                              style: const TextStyle(
+                                color: AppColors.primaryLight,
+                                fontSize: 12,
+                                fontWeight: FontWeight.w600,
+                              ),
                             ),
                           ),
-                        ))
-                    .toList(),
+                        ),
+                      )
+                      .toList(),
+                ),
               ),
               if ((project.githubUrl ?? '').isNotEmpty ||
                   (project.liveUrl ?? '').isNotEmpty) ...[
                 const SizedBox(height: 18),
-                Row(
+                Wrap(
+                  spacing: 8,
+                  runSpacing: 8,
                   children: [
                     if ((project.githubUrl ?? '').isNotEmpty)
                       TextButton.icon(
@@ -114,8 +124,7 @@ class ProjectCard extends StatelessWidget {
                   ],
                 ),
               ],
-            ],
-          ),
+          ],
         ),
       ),
     );
