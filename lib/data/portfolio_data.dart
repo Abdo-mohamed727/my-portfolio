@@ -113,23 +113,15 @@ class PortfolioData {
         'assets/projects/my_store/admin/Screenshot_1785875780.png',
         'assets/projects/my_store/admin/Screenshot_1785875823.png',
         'assets/projects/my_store/admin/Screenshot_1785875827.png',
-        'assets/projects/my_store/admin/Screenshot_1785876169.png',
-        'assets/projects/my_store/cutomer/Screenshot_1785875621.png',
-        'assets/projects/my_store/cutomer/Screenshot_1785875634.png',
-        'assets/projects/my_store/cutomer/Screenshot_1785875639.png',
-        'assets/projects/my_store/cutomer/Screenshot_1785875643.png',
-        'assets/projects/my_store/cutomer/Screenshot_1785875650.png',
-        'assets/projects/my_store/cutomer/Screenshot_1785875660.png',
-        'assets/projects/my_store/cutomer/Screenshot_1785875667.png',
+        'assets/projects/my_store/coustomer/Screenshot_1785875621.png',
+        'assets/projects/my_store/coustomer/Screenshot_1785875634.png',
+        'assets/projects/my_store/coustomer/Screenshot_1785875639.png',
+        'assets/projects/my_store/coustomer/Screenshot_1785875643.png',
+        'assets/projects/my_store/coustomer/Screenshot_1785875650.png',
+        'assets/projects/my_store/coustomer/Screenshot_1785875660.png',
+        'assets/projects/my_store/coustomer/Screenshot_1785875667.png',
+        // TODO: add screenshots, e.g. 'assets/projects/nexa_store/1.png'
       ],
     ),
   ];
 }
-// Developing a store app with product browsing, detailed product views, cart management, and role-based access
-// for two distinct user roles (Admin and Customer).
-// Integrated GraphQL for efficient, flexible data fetching in place of traditional REST calls, reducing over-fetching of
-// product data.
-// Implemented using Bloc state management with push notification integration for real-time order and inventory
-// updates.
-// Applied clean code principles and reusable widget architecture to support long-term scalability and
-// maintainability.
