@@ -55,10 +55,9 @@ class PortfolioData {
         'Clean Architecture'
       ],
       highlights: [
-        'Optimistic UI updates for instant favourite toggling with smooth animations',
-        'Implemented a reactive BLoC-driven UI with state management and error handling',
-        "Designed a Clean Architecture structure with separate layers for presentation, domain, and data",
-        'Work with Team to implement features and fix bugs in a collaborative environment',
+        'Built an e-commerce app with product browsing, detailed product views, cart management, and search delivered as part of a 4-developer team.',
+        'Collaborated using Git/GitHub feature-branch workflows and pull request reviews, contributing to code reviews and architecture discussions across Clean Architecture layers.',
+        'Debugged and resolved integration issues arising from parallel feature development, including state-management mismatches and API contract conflicts.',
       ],
       githubUrl: '', // TODO: add your repo link
       screenshots: [
@@ -98,10 +97,12 @@ class PortfolioData {
       description:
           'An earlier Store app project used to deepen understanding of '
           'Clean Architecture domain layers and a multi-file theming system.',
-      techStack: ['Flutter', 'Clean Architecture', 'ThemeExtension'],
+      techStack: ['Flutter', 'Graph QL', 'Clean Architecture'],
       highlights: [
-        'The App has two  rules: Admin and Customer, each with its own set of features and functionalities.',
-        'I use clean architecture to separate the app into different layers, making it easier to maintain and test.',
+        ' Developing a store app with product browsing, detailed product views, cart management, and role-based access for two distinct user roles (Admin and Customer)',
+        ' Integrated GraphQL for efficient, flexible data fetching in place of traditional REST calls, reducing over-fetching of product data',
+        ' Implemented using Bloc state management with push notification integration for real-time order and inventory updates',
+        ' Applied clean code principles and reusable widget architecture to support long-term scalability and maintainability',
       ],
       githubUrl: '',
       screenshots: [
@@ -127,3 +128,11 @@ class PortfolioData {
     ),
   ];
 }
+// Developing a store app with product browsing, detailed product views, cart management, and role-based access
+// for two distinct user roles (Admin and Customer).
+// Integrated GraphQL for efficient, flexible data fetching in place of traditional REST calls, reducing over-fetching of
+// product data.
+// Implemented using Bloc state management with push notification integration for real-time order and inventory
+// updates.
+// Applied clean code principles and reusable widget architecture to support long-term scalability and
+// maintainability.
