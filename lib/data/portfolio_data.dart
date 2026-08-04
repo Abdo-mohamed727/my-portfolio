@@ -20,11 +20,11 @@ class PortfolioData {
       'and built multiple end-to-end apps including an e-commerce platform. '
       'Currently expanding into AI engineering alongside mobile development.';
 
-  static const String email = 'your.email@example.com'; // TODO: update
+  static const String email = 'abdelrahamn.moh.116@gmail.com'; // TODO: update
   static const String github =
-      'https://github.com/your-username'; // TODO: update
+      'https://github.com/Abdo-mohamed727'; // TODO: update
   static const String linkedin =
-      'https://linkedin.com/in/your-profile'; // TODO: update
+      'https://www.linkedin.com/in/abdelrahman-mohamed-242571345/?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3B1rC4RAxRTwSCJWWBaSN%2FQw%3D%3D'; // TODO: update
   static const String cvUrl = ''; // TODO: link to your CV (e.g. hosted PDF)
 
   static const List<String> skills = [
