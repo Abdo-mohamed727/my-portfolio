@@ -37239,13 +37239,13 @@ else{s=s.pm(p.a.a<700?26:34)
 p=s}s=t.D
 return A.dS(r,A.jD(new A.dR(B.cQ,A.lJ(A.c([A.cS("Let's work together",p,B.c4),B.j8,new A.dR(B.xq,A.cS("I'm open to junior Flutter developer roles and freelance projects. Feel free to reach out \u2014 happy to talk about Flutter, Clean Architecture, or anything mobile dev.",A.a9(a).ok.y,B.c4),r),B.fo,A.y0(B.wI,A.c([A.arG(B.AQ,B.NN,new A.RJ(this),A.aiB(r,r,B.bv,r,r,r,r,r,r,B.j,r,r,B.hn,r,new A.cr(A.dP(10),B.p),r,r,r,r,r)),A.ajR(B.AW,B.NK,new A.RK(this),A.afk(r,r,r,r,r,r,r,r,r,B.bu,r,r,B.hn,r,new A.cr(A.dP(10),B.p),B.e0,r,r,r,r)),A.ajR(B.AS,B.NE,new A.RL(this),A.afk(r,r,r,r,r,r,r,r,r,B.bu,r,r,B.hn,r,new A.cr(A.dP(10),B.p),B.e0,r,r,r,r))],s),16,16),B.Jt,A.dS(r,r,B.q,B.b4,r,r,r,1,r,r,r,r,r),B.Jq,A.cS("\xa9 "+A.ak6(new A.fT(Date.now(),0,!1))+" Abdulrahman Mohammed. Built with Flutter.",B.jg,r)],s),B.a3),r),r,r),B.q,B.hg,r,r,r,r,r,new A.aS(o,q,o,q),r,r,1/0)}}
 A.RJ.prototype={
-$0(){return this.a.mf("mailto:your.email@example.com")},
+$0(){return this.a.mf("mailto:abdelrahamn.moh.116@gmail.com")},
 $S:0}
 A.RK.prototype={
-$0(){return this.a.mf("https://github.com/your-username")},
+$0(){return this.a.mf("https://github.com/Abdo-mohamed727")},
 $S:0}
 A.RL.prototype={
-$0(){return this.a.mf("https://linkedin.com/in/your-profile")},
+$0(){return this.a.mf("https://www.linkedin.com/in/abdelrahman-mohamed-242571345/?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3B1rC4RAxRTwSCJWWBaSN%2FQw%3D%3D")},
 $S:0}
 A.DN.prototype={
 N(a){var s,r,q,p,o=null,n=A.bl(a,o,t.w).w.a.a<700,m=A.wx(a),l=n?64:120,k=A.dP(20)
