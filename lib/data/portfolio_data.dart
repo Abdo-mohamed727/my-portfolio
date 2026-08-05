@@ -24,7 +24,7 @@ class PortfolioData {
   static const String github =
       'https://github.com/Abdo-mohamed727'; // TODO: update
   static const String linkedin =
-      'https://www.linkedin.com/in/abdelrahman-mohamed-242571345/?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3B1rC4RAxRTwSCJWWBaSN%2FQw%3D%3D'; // TODO: update
+      'https://www.linkedin.com/in/abdelrahman-mohammedd/?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3B9WcTPhEwQ%2Fufm35eDimwJQ%3D%3D'; // TODO: update
   static const String cvUrl = ''; // TODO: link to your CV (e.g. hosted PDF)
 
   static const List<String> skills = [
