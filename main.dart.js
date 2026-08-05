@@ -37089,7 +37089,7 @@ A.Ru.prototype={
 $0(){return this.a.m5("https://github.com/Abdo-mohamed727")},
 $S:0}
 A.Rv.prototype={
-$0(){return this.a.m5("https://www.linkedin.com/in/abdelrahman-mohamed-242571345/?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3B1rC4RAxRTwSCJWWBaSN%2FQw%3D%3D")},
+$0(){return this.a.m5("https://www.linkedin.com/in/abdelrahman-mohammedd/?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3B9WcTPhEwQ%2Fufm35eDimwJQ%3D%3D")},
 $S:0}
 A.DJ.prototype={
 N(a){var s,r,q,p,o=null,n=A.bl(a,o,t.w).w.a.a<700,m=A.wq(a),l=n?64:120,k=A.dQ(20)
