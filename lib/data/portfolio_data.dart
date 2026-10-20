@@ -15,17 +15,20 @@ class PortfolioData {
 
   static const String about =
       'Computer Science student at Benha University and Flutter developer '
-      'with hands-on experience in Clean Architecture, BLoC/Cubit, Dio/Retrofit '
-      'networking, and Firebase (Auth, Firestore, FCM). Completed an NTI internship '
-      'and built multiple end-to-end apps including an e-commerce platform. '
-      'Currently expanding into AI engineering alongside mobile development.';
+      'specializing in scalable mobile applications built with Clean Architecture, '
+      'BLoC/Cubit, Dio/Retrofit, and Firebase (Auth, Firestore, FCM). '
+      'Currently a FLutter Developer Intern at DSC Egypt, with prior NTI '
+      'internship experience and multiple end-to-end projects delivered, '
+      'including an e-commerce platform. Expanding into AI engineering '
+      'alongside mobile development.';
 
   static const String email = 'abdelrahamn.moh.116@gmail.com'; // TODO: update
   static const String github =
       'https://github.com/Abdo-mohamed727'; // TODO: update
   static const String linkedin =
       'https://www.linkedin.com/in/abdelrahman-mohammedd/?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3B9WcTPhEwQ%2Fufm35eDimwJQ%3D%3D'; // TODO: update
-  static const String cvUrl = ''; // TODO: link to your CV (e.g. hosted PDF)
+  static const String cvUrl =
+      'https://drive.google.com/file/d/13ov6w7qC_fRMgiyYuDolLFAwvWgDKlid/view?usp=drive_link'; // TODO: link to your CV (e.g. hosted PDF)
 
   static const List<String> skills = [
     'Flutter & Dart',
@@ -38,6 +41,7 @@ class PortfolioData {
     'Git & GitHub',
     'Python (learning)',
     'Data Structures & Algorithms',
+    'Testing (Unit Testing , Integeration Testing)'
   ];
 
   static const List<ProjectModel> projects = [
