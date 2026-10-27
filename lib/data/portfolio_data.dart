@@ -46,6 +46,45 @@ class PortfolioData {
 
   static const List<ProjectModel> projects = [
     ProjectModel(
+      title: 'DineFlow',
+      description:
+          'A full-stack restaurant management system designed to streamline '
+          'restaurant operations and improve the dining experience. DineFlow '
+          'supports dedicated workflows for customers, waiters, and kitchen '
+          'staff, connecting customer orders with service and kitchen operations. '
+          'My work covered the Flutter application and backend business logic, '
+          'including requirements analysis, user workflows, API contracts, '
+          'architecture documentation, and testing documentation.',
+      techStack: [
+        'Flutter',
+        'Dart',
+        'Node.js',
+        'REST APIs',
+        'Firebase',
+        'Notification',
+        'Socket.IO',
+        'Clean Architecture',
+        'Cubit / BLoC',
+      ],
+      highlights: [
+        'Place and track dine-in and takeaway orders.',
+        'Manage kitchen orders through confirmation, preparation, and ready-for-service stages.',
+        'Request waiter assistance, call a waiter, or ask for the bill.',
+        'Synchronize order statuses and operational events in real time.',
+        'Notify customers, kitchen staff, and waiters about relevant updates.',
+        'Organize dining sessions and enforce order and billing completion rules.',
+        'Provide role-specific experiences for customers, waiters, and kitchen staff.',
+      ],
+      screenshots: [
+        'assets/dine_flow/DineFlow_preview_all.png',
+        'assets/dine_flow/DineFlow_preview_customer.png',
+        'assets/dine_flow/DineFlow_preview_kitchen.png',
+        'assets/dine_flow/DineFlow_preview_waiter.png',
+      ],
+      githubUrl: 'https://github.com/Abdo-mohamed727/DineFlow.git',
+      liveUrl: 'assets/dine_flow/1026 (1)(1).mp4',
+    ),
+    ProjectModel(
       title: 'BlinkBuy',
       description:
           'A supermarket / e-commerce Flutter app built with Clean Architecture. '
@@ -63,7 +102,8 @@ class PortfolioData {
         'Collaborated using Git/GitHub feature-branch workflows and pull request reviews, contributing to code reviews and architecture discussions across Clean Architecture layers.',
         'Debugged and resolved integration issues arising from parallel feature development, including state-management mismatches and API contract conflicts.',
       ],
-      githubUrl: '', // TODO: add your repo link
+      githubUrl:
+          'https://github.com/Abdo-mohamed727/Blink-Buy.git', // TODO: add your repo link
       screenshots: [
         'assets/projects/blinkbuy/Screenshot_1785795073.png',
         'assets/projects/blinkbuy/Screenshot_1785795076.png',
@@ -82,21 +122,6 @@ class PortfolioData {
       ],
     ),
     ProjectModel(
-      title: 'Tasky',
-      description:
-          'A Firebase-backed task management app focused on clean data modeling '
-          'and a smooth task creation flow.',
-      techStack: ['Flutter', 'Firebase', 'Cloud Firestore'],
-      highlights: [
-        'Designed Firestore auto-ID data structure and copyWith update pattern',
-        'Built a custom AddTaskBottomSheet widget',
-      ],
-      githubUrl: '', // TODO: add your repo link
-      screenshots: [
-        // TODO: add screenshots, e.g. 'assets/projects/tasky/1.png'
-      ],
-    ),
-    ProjectModel(
       title: 'Nexa_Store',
       description:
           'An earlier Store app project used to deepen understanding of '
@@ -108,7 +133,7 @@ class PortfolioData {
         ' Implemented using Bloc state management with push notification integration for real-time order and inventory updates',
         ' Applied clean code principles and reusable widget architecture to support long-term scalability and maintainability',
       ],
-      githubUrl: '',
+      githubUrl: 'https://github.com/Abdo-mohamed727/Nexa_Store.git',
       screenshots: [
         'assets/projects/my_store/admin/Screenshot_1785875760.png',
         'assets/projects/my_store/admin/Screenshot_1785875763.png',
