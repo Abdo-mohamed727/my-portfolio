@@ -31,6 +31,12 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.background,
@@ -41,6 +47,7 @@ class _HomeScreenState extends State<HomeScreen> {
               onAboutTap: () => _scrollTo(_aboutKey),
               onProjectsTap: () => _scrollTo(_projectsKey),
               onContactTap: () => _scrollTo(_contactKey),
+              scrollController: _scrollController,
             ),
             Expanded(
               child: SingleChildScrollView(
@@ -51,11 +58,24 @@ class _HomeScreenState extends State<HomeScreen> {
                       onProjectsTap: () => _scrollTo(_projectsKey),
                       onContactTap: () => _scrollTo(_contactKey),
                     ),
-                    KeyedSubtree(key: _aboutKey, child: const AboutSection()),
                     KeyedSubtree(
-                        key: _projectsKey, child: const ProjectsSection()),
+                      key: _aboutKey,
+                      child: AboutSection(
+                        scrollController: _scrollController,
+                      ),
+                    ),
                     KeyedSubtree(
-                        key: _contactKey, child: const ContactSection()),
+                      key: _projectsKey,
+                      child: ProjectsSection(
+                        scrollController: _scrollController,
+                      ),
+                    ),
+                    KeyedSubtree(
+                      key: _contactKey,
+                      child: ContactSection(
+                        scrollController: _scrollController,
+                      ),
+                    ),
                   ],
                 ),
               ),

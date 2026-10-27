@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../theme/app_theme.dart';
 import '../models/project_model.dart';
+import '../widgets/hover_scale.dart';
+import '../widgets/reveal_on_scroll.dart';
 
 class ProjectPresentationScreen extends StatefulWidget {
   final ProjectModel project;
@@ -15,6 +17,7 @@ class ProjectPresentationScreen extends StatefulWidget {
 
 class _ProjectPresentationScreenState extends State<ProjectPresentationScreen> {
   final PageController _pageController = PageController(viewportFraction: 0.62);
+  final ScrollController _scrollController = ScrollController();
   int _currentPage = 0;
 
   Future<void> _launch(String url) async {
@@ -26,6 +29,7 @@ class _ProjectPresentationScreenState extends State<ProjectPresentationScreen> {
   @override
   void dispose() {
     _pageController.dispose();
+    _scrollController.dispose();
     super.dispose();
   }
 
@@ -39,6 +43,7 @@ class _ProjectPresentationScreenState extends State<ProjectPresentationScreen> {
       backgroundColor: AppColors.background,
       body: SafeArea(
         child: SingleChildScrollView(
+          controller: _scrollController,
           child: Padding(
             padding: EdgeInsets.symmetric(
               horizontal: Responsive.horizontalPadding(context),
@@ -50,140 +55,162 @@ class _ProjectPresentationScreenState extends State<ProjectPresentationScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                // Back button
-                InkWell(
-                  onTap: () => Navigator.of(context).pop(),
-                  borderRadius: BorderRadius.circular(8),
-                  child: const Padding(
-                    padding: EdgeInsets.symmetric(vertical: 8),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Icon(Icons.arrow_back,
-                            color: AppColors.textSecondary, size: 18),
-                        SizedBox(width: 8),
-                        Text('Back to projects',
-                            style: TextStyle(color: AppColors.textSecondary)),
-                      ],
+                    // Back button
+                    InkWell(
+                      onTap: () => Navigator.of(context).pop(),
+                      borderRadius: BorderRadius.circular(8),
+                      child: const Padding(
+                        padding: EdgeInsets.symmetric(vertical: 8),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Icon(Icons.arrow_back,
+                                color: AppColors.textSecondary, size: 18),
+                            SizedBox(width: 8),
+                            Text('Back to projects',
+                                style:
+                                    TextStyle(color: AppColors.textSecondary)),
+                          ],
+                        ),
+                      ),
                     ),
-                  ),
-                ),
-                const SizedBox(height: 20),
+                    const SizedBox(height: 20),
 
-                Text(project.title,
-                    style: Theme.of(context).textTheme.displayLarge?.copyWith(
-                          fontSize: isMobile ? 32 : 44,
-                        )),
-                const SizedBox(height: 12),
-                SizedBox(
-                  width: isMobile ? double.infinity : 700,
-                  child: Text(project.description,
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodyLarge
-                          ?.copyWith(fontSize: 16)),
-                ),
-                const SizedBox(height: 28),
+                    Hero(
+                      tag: 'project-title-${project.title}',
+                      child: Material(
+                        color: Colors.transparent,
+                        child: Text(
+                          project.title,
+                          style: Theme.of(context)
+                              .textTheme
+                              .displayLarge
+                              ?.copyWith(
+                                fontSize: isMobile ? 32 : 44,
+                              ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 12),
+                    SizedBox(
+                      width: isMobile ? double.infinity : 700,
+                      child: Text(project.description,
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyLarge
+                              ?.copyWith(fontSize: 16)),
+                    ),
+                    const SizedBox(height: 28),
 
-                // --- Demo presentation (image carousel) ---
-                if (hasShots) ...[
-                  _buildCarousel(project),
-                  const SizedBox(height: 16),
-                  _buildDots(project.screenshots.length),
-                  const SizedBox(height: 36),
-                ] else
-                  _buildPlaceholder(),
+                    // --- Demo presentation (image carousel) ---
+                    if (hasShots) ...[
+                      _buildCarousel(project),
+                      const SizedBox(height: 16),
+                      _buildDots(project.screenshots.length),
+                      const SizedBox(height: 36),
+                    ] else
+                      _buildPlaceholder(),
 
-                const SizedBox(height: 12),
+                    const SizedBox(height: 12),
 
-                // Highlights
-                if (project.highlights.isNotEmpty) ...[
-                  Text('Highlights',
-                      style: Theme.of(context).textTheme.titleLarge),
-                  const SizedBox(height: 14),
-                  ...project.highlights.map(
-                    (h) => Padding(
-                      padding: const EdgeInsets.only(bottom: 10),
-                      child: Row(
+                    // Highlights
+                    if (project.highlights.isNotEmpty) ...[
+                      RevealOnScroll(
+                        scrollController: _scrollController,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text('Highlights',
+                                style: Theme.of(context).textTheme.titleLarge),
+                            const SizedBox(height: 14),
+                            ...project.highlights.map(
+                              (h) => Padding(
+                                padding: const EdgeInsets.only(bottom: 10),
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    const Padding(
+                                      padding: EdgeInsets.only(top: 6),
+                                      child: Icon(Icons.circle,
+                                          size: 5, color: AppColors.accent),
+                                    ),
+                                    const SizedBox(width: 10),
+                                    Expanded(
+                                      child: Text(h,
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyLarge),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            const SizedBox(height: 28),
+                          ],
+                        ),
+                      ),
+                    ],
+
+                    // Tech stack
+                    RevealOnScroll(
+                      scrollController: _scrollController,
+                      delay: const Duration(milliseconds: 100),
+                      child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Padding(
-                            padding: EdgeInsets.only(top: 6),
-                            child: Icon(Icons.circle,
-                                size: 5, color: AppColors.accent),
+                          Text('Tech stack',
+                              style: Theme.of(context).textTheme.titleLarge),
+                          const SizedBox(height: 14),
+                          Wrap(
+                            spacing: 10,
+                            runSpacing: 10,
+                            children: project.techStack
+                                .map((t) => Container(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 14, vertical: 10),
+                                      decoration: BoxDecoration(
+                                        color: AppColors.surfaceLight,
+                                        borderRadius: BorderRadius.circular(8),
+                                        border:
+                                            Border.all(color: AppColors.border),
+                                      ),
+                                      child: Text(t,
+                                          style: const TextStyle(
+                                              color: AppColors.textPrimary,
+                                              fontSize: 13.5)),
+                                    ))
+                                .toList(),
                           ),
-                          const SizedBox(width: 10),
-                          Expanded(
-                            child: Text(h,
-                                style: Theme.of(context).textTheme.bodyLarge),
-                          ),
+                          const SizedBox(height: 36),
                         ],
                       ),
                     ),
-                  ),
-                  const SizedBox(height: 28),
-                ],
 
-                // Tech stack
-                Text('Tech stack',
-                    style: Theme.of(context).textTheme.titleLarge),
-                const SizedBox(height: 14),
-                Wrap(
-                  spacing: 10,
-                  runSpacing: 10,
-                  children: project.techStack
-                      .map((t) => Container(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 14, vertical: 10),
-                            decoration: BoxDecoration(
-                              color: AppColors.surfaceLight,
-                              borderRadius: BorderRadius.circular(8),
-                              border: Border.all(color: AppColors.border),
+                    // Links
+                    Wrap(
+                      spacing: 16,
+                      runSpacing: 16,
+                      children: [
+                        if ((project.githubUrl ?? '').isNotEmpty)
+                          HoverScale(
+                            child: ElevatedButton.icon(
+                              onPressed: () => _launch(project.githubUrl!),
+                              icon: const Icon(Icons.code, size: 18),
+                              label: const Text('View Code'),
+                              style: _elevatedButtonStyle(),
                             ),
-                            child: Text(t,
-                                style: const TextStyle(
-                                    color: AppColors.textPrimary,
-                                    fontSize: 13.5)),
-                          ))
-                      .toList(),
-                ),
-                const SizedBox(height: 36),
-
-                // Links
-                Wrap(
-                  spacing: 16,
-                  runSpacing: 16,
-                  children: [
-                    if ((project.githubUrl ?? '').isNotEmpty)
-                      ElevatedButton.icon(
-                        onPressed: () => _launch(project.githubUrl!),
-                        icon: const Icon(Icons.code, size: 18),
-                        label: const Text('View Code'),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: AppColors.primary,
-                          foregroundColor: Colors.white,
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 24, vertical: 16),
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10)),
-                        ),
-                      ),
-                    if ((project.liveUrl ?? '').isNotEmpty)
-                      OutlinedButton.icon(
-                        onPressed: () => _launch(project.liveUrl!),
-                        icon: const Icon(Icons.open_in_new, size: 18),
-                        label: const Text('Live Demo'),
-                        style: OutlinedButton.styleFrom(
-                          foregroundColor: AppColors.textPrimary,
-                          side: const BorderSide(color: AppColors.border),
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 24, vertical: 16),
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10)),
-                        ),
-                      ),
-                  ],
-                ),
+                          ),
+                        if ((project.liveUrl ?? '').isNotEmpty)
+                          HoverScale(
+                            child: OutlinedButton.icon(
+                              onPressed: () => _launch(project.liveUrl!),
+                              icon: const Icon(Icons.open_in_new, size: 18),
+                              label: const Text('Live Demo'),
+                              style: _outlinedButtonStyle(),
+                            ),
+                          ),
+                      ],
+                    ),
                     const SizedBox(height: 40),
                   ],
                 ),
@@ -197,7 +224,7 @@ class _ProjectPresentationScreenState extends State<ProjectPresentationScreen> {
 
   Widget _buildImage(String path) {
     final isNetwork = path.startsWith('http://') || path.startsWith('https://');
-    final errorWidget = const Center(
+    const errorWidget = Center(
       child: Icon(Icons.image_not_supported,
           color: AppColors.textSecondary, size: 40),
     );
@@ -226,6 +253,42 @@ class _ProjectPresentationScreenState extends State<ProjectPresentationScreen> {
     );
   }
 
+  ButtonStyle _elevatedButtonStyle() {
+    return ButtonStyle(
+      animationDuration: const Duration(milliseconds: 220),
+      backgroundColor: WidgetStateProperty.resolveWith((states) {
+        return states.contains(WidgetState.hovered)
+            ? AppColors.primaryLight
+            : AppColors.primary;
+      }),
+      foregroundColor: const WidgetStatePropertyAll(Colors.white),
+      padding: const WidgetStatePropertyAll(
+          EdgeInsets.symmetric(horizontal: 24, vertical: 16)),
+      shape: WidgetStatePropertyAll(
+        RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+      ),
+    );
+  }
+
+  ButtonStyle _outlinedButtonStyle() {
+    return ButtonStyle(
+      animationDuration: const Duration(milliseconds: 220),
+      foregroundColor: const WidgetStatePropertyAll(AppColors.textPrimary),
+      side: WidgetStateProperty.resolveWith((states) {
+        return BorderSide(
+          color: states.contains(WidgetState.hovered)
+              ? AppColors.primary
+              : AppColors.border,
+        );
+      }),
+      padding: const WidgetStatePropertyAll(
+          EdgeInsets.symmetric(horizontal: 24, vertical: 16)),
+      shape: WidgetStatePropertyAll(
+        RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+      ),
+    );
+  }
+
   Widget _buildCarousel(ProjectModel project) {
     final isMobile = Responsive.isMobile(context);
 
@@ -247,7 +310,8 @@ class _ProjectPresentationScreenState extends State<ProjectPresentationScreen> {
                       _pageController.position.haveDimensions) {
                     page = _pageController.page ?? _currentPage.toDouble();
                   }
-                  final distance = (page - index).abs().clamp(0.0, 1.0);
+                  final distance =
+                      (page - index).abs().clamp(0.0, 1.0).toDouble();
                   // Centered screenshot: full size & fully opaque.
                   // Neighbours: slightly smaller & faded.
                   final scale = 1 - (distance * 0.22);
@@ -269,7 +333,7 @@ class _ProjectPresentationScreenState extends State<ProjectPresentationScreen> {
                       _pageController.animateToPage(
                         index,
                         duration: const Duration(milliseconds: 300),
-                        curve: Curves.easeInOut,
+                        curve: Curves.easeOutCubic,
                       );
                     }
                   },
@@ -297,7 +361,7 @@ class _ProjectPresentationScreenState extends State<ProjectPresentationScreen> {
                 icon: Icons.chevron_left,
                 onTap: () => _pageController.previousPage(
                   duration: const Duration(milliseconds: 300),
-                  curve: Curves.easeInOut,
+                  curve: Curves.easeOutCubic,
                 ),
               ),
             ),
@@ -307,7 +371,7 @@ class _ProjectPresentationScreenState extends State<ProjectPresentationScreen> {
                 icon: Icons.chevron_right,
                 onTap: () => _pageController.nextPage(
                   duration: const Duration(milliseconds: 300),
-                  curve: Curves.easeInOut,
+                  curve: Curves.easeOutCubic,
                 ),
               ),
             ),
@@ -322,14 +386,22 @@ class _ProjectPresentationScreenState extends State<ProjectPresentationScreen> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: List.generate(
         count,
-        (i) => AnimatedContainer(
-          duration: const Duration(milliseconds: 250),
-          margin: const EdgeInsets.symmetric(horizontal: 4),
-          width: i == _currentPage ? 22 : 8,
-          height: 8,
-          decoration: BoxDecoration(
-            color: i == _currentPage ? AppColors.primary : AppColors.border,
-            borderRadius: BorderRadius.circular(4),
+        (i) => GestureDetector(
+          onTap: () => _pageController.animateToPage(
+            i,
+            duration: const Duration(milliseconds: 300),
+            curve: Curves.easeOutCubic,
+          ),
+          child: AnimatedContainer(
+            duration: const Duration(milliseconds: 250),
+            curve: Curves.easeOutCubic,
+            margin: const EdgeInsets.symmetric(horizontal: 4),
+            width: i == _currentPage ? 22 : 8,
+            height: 8,
+            decoration: BoxDecoration(
+              color: i == _currentPage ? AppColors.primary : AppColors.border,
+              borderRadius: BorderRadius.circular(4),
+            ),
           ),
         ),
       ),
@@ -373,7 +445,7 @@ class _NavArrow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: Colors.black.withOpacity(0.35),
+      color: Colors.black.withValues(alpha: 0.35),
       shape: const CircleBorder(),
       child: InkWell(
         onTap: onTap,

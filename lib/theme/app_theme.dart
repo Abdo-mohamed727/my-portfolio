@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 
 class AppColors {
   static const Color background = Color(0xFF0A0E14);
@@ -58,6 +59,12 @@ class AppTheme {
 
 /// Simple responsive breakpoints helper used across the app.
 class Responsive {
+  static bool get supportsHover =>
+      kIsWeb ||
+      defaultTargetPlatform == TargetPlatform.macOS ||
+      defaultTargetPlatform == TargetPlatform.windows ||
+      defaultTargetPlatform == TargetPlatform.linux;
+
   static bool isMobile(BuildContext context) =>
       MediaQuery.of(context).size.width < 700;
 

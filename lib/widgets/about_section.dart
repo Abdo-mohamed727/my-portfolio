@@ -1,58 +1,72 @@
 import 'package:flutter/material.dart';
 import '../theme/app_theme.dart';
 import '../data/portfolio_data.dart';
+import 'reveal_on_scroll.dart';
 
 class AboutSection extends StatelessWidget {
-  const AboutSection({super.key});
+  final ScrollController scrollController;
+
+  const AboutSection({super.key, required this.scrollController});
 
   @override
   Widget build(BuildContext context) {
     final isMobile = Responsive.isMobile(context);
 
-    return Container(
-      width: double.infinity,
-      padding: EdgeInsets.symmetric(
-        horizontal: Responsive.horizontalPadding(context),
-        vertical: Responsive.sectionVerticalPadding(context),
-      ),
-      color: AppColors.surface,
-      child: Center(
-        child: ConstrainedBox(
-          constraints: const BoxConstraints(maxWidth: 1200),
-          child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const _SectionLabel(label: 'ABOUT ME'),
-          const SizedBox(height: 16),
-          Flex(
-            direction: isMobile ? Axis.vertical : Axis.horizontal,
-            crossAxisAlignment: isMobile
-                ? CrossAxisAlignment.start
-                : CrossAxisAlignment.start,
-            children: [
-              Expanded(
-                flex: isMobile ? 0 : 1,
-                child: Text(
-                  PortfolioData.about,
-                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                        fontSize: 17,
+    return RevealOnScroll(
+      scrollController: scrollController,
+      child: Container(
+        width: double.infinity,
+        padding: EdgeInsets.symmetric(
+          horizontal: Responsive.horizontalPadding(context),
+          vertical: Responsive.sectionVerticalPadding(context),
+        ),
+        color: AppColors.surface,
+        child: Center(
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 1200),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const _SectionLabel(label: 'ABOUT ME'),
+                const SizedBox(height: 16),
+                Flex(
+                  direction: isMobile ? Axis.vertical : Axis.horizontal,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Expanded(
+                      flex: isMobile ? 0 : 1,
+                      child: Text(
+                        PortfolioData.about,
+                        style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                              fontSize: 17,
+                            ),
                       ),
+                    ),
+                    SizedBox(
+                        width: isMobile ? 0 : 60, height: isMobile ? 32 : 0),
+                    Expanded(
+                      flex: isMobile ? 0 : 1,
+                      child: Wrap(
+                        spacing: 10,
+                        runSpacing: 10,
+                        children: [
+                          for (var index = 0;
+                              index < PortfolioData.skills.length;
+                              index++)
+                            RevealOnScroll(
+                              scrollController: scrollController,
+                              delay: Duration(milliseconds: index * 35),
+                              scale: true,
+                              child: _SkillChip(
+                                  label: PortfolioData.skills[index]),
+                            ),
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
-              ),
-              SizedBox(width: isMobile ? 0 : 60, height: isMobile ? 32 : 0),
-              Expanded(
-                flex: isMobile ? 0 : 1,
-                child: Wrap(
-                  spacing: 10,
-                  runSpacing: 10,
-                  children: PortfolioData.skills
-                      .map((skill) => _SkillChip(label: skill))
-                      .toList(),
-                ),
-              ),
-            ],
-          ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
