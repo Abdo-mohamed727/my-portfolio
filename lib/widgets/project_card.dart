@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../theme/app_theme.dart';
@@ -18,8 +19,17 @@ class _ProjectCardState extends State<ProjectCard> {
 
   Future<void> _launch(String url) async {
     if (url.isEmpty) return;
-    final uri = Uri.tryParse(url);
-    if (uri != null) await launchUrl(uri, mode: LaunchMode.externalApplication);
+
+    Uri? uri;
+    if (kIsWeb && url.startsWith('assets/')) {
+      // Flutter web بيحط الـ assets تحت assets/ تاني: assets/assets/...
+      uri = Uri.base.resolveUri(Uri(path: 'assets/$url'));
+    } else {
+      uri = Uri.tryParse(url);
+    }
+    if (uri == null) return;
+
+    await launchUrl(uri, mode: LaunchMode.externalApplication);
   }
 
   void _openPresentation(BuildContext context) {

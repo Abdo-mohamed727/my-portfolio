@@ -82,7 +82,7 @@ class PortfolioData {
         'assets/dine_flow/DineFlow_preview_waiter.png',
       ],
       githubUrl: 'https://github.com/Abdo-mohamed727/DineFlow.git',
-      liveUrl: 'assets/dine_flow/1026 (1)(1).mp4',
+      liveUrl: 'assets/dine_flow/demo.mp4',
     ),
     ProjectModel(
       title: 'BlinkBuy',
